@@ -24,9 +24,6 @@ $title = 'Daftar Mahasiswa';
 
 include 'layout/header.php';
 
-// Menampilkan data mahasiswa
-$data_mahasiswa = select("SELECT * FROM mahasiswa ORDER BY id_mahasiswa DESC");
-
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -36,12 +33,11 @@ $data_mahasiswa = select("SELECT * FROM mahasiswa ORDER BY id_mahasiswa DESC");
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0"><i class="fas fa-users"></i> Data Mahasiswa</h1>
+          <h1 class="m-0"><i class="fas fa-users"></i> Data Pegawai</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <!-- <li class="breadcrumb-item"><a href="index.php">Data Mahasiswa</a></li> -->
-            <li class="breadcrumb-item active">Data Mahasiswa</li>
+            <li class="breadcrumb-item active">Data Pegawai</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -56,29 +52,24 @@ $data_mahasiswa = select("SELECT * FROM mahasiswa ORDER BY id_mahasiswa DESC");
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Table Data Mahasiswa</h3>
+              <h3 class="card-title">Table Data Pegawai</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <a href="tambah-mahasiswa.php" class="btn btn-primary btn-sm mb-2"><i class="fas fa-plus"></i> Tambah</a>
 
-              <a href="download-pdf-mahasiswa.php" class="btn btn-success btn-sm mb-1"><i class="fas fa-file-pdf"></i> PDF</a>
-
-              <a href="download-excel-mahasiswa.php" class="btn btn-success btn-sm mb-1"><i class="fas fa-file-excel"></i> Download Excel</a>
-
-              <table id="serverside" class="table table-bordered table-hover">
+              <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>No.</th>
                     <th>Nama</th>
-                    <th>Prodi</th>
-                    <th>Jenis Kelamin</th>
+                    <th>Jabatan</th>
+                    <th>Email</th>
                     <th>Telepon</th>
-                    <th>Aksi</th>
+                    <th>Alamat</th>
                   </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="Live_data">
                   
                 </tbody>
               </table>
@@ -90,5 +81,24 @@ $data_mahasiswa = select("SELECT * FROM mahasiswa ORDER BY id_mahasiswa DESC");
   </section>
   <!-- /.content -->
 </div>
+
+<script>
+  $('document').ready(function() {
+    setInterval(function() {
+      getPegawai()
+    }, 200) //request per 2 detik
+  });
+
+  function getPegawai()
+  {
+    $.ajax({
+      url: "realtime-pegawai.php",
+      type: "GET",
+      success: function(response) {
+        $('#Live_data').html(response)
+      }
+    });
+  }
+</script>
 
 <?php include 'layout/footer.php'; ?>

@@ -121,7 +121,7 @@ $mahasiswa = select("SELECT * FROM mahasiswa WHERE id_mahasiswa = $id_mahasiswa"
               </div>
             </div>
 
-            <button type="submit" name="ubah" class="btn btn-primary" style="float: right;">Ubah</button>
+            <button type="submit" class="btn btn-primary" style="float: right;">Ubah</button>
           </form>
         </div>
       </div>

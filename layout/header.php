@@ -31,6 +31,9 @@ include 'config/app.php';
   <link rel="stylesheet" href="assets-tamplate/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="assets-tamplate/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="assets-tamplate/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+  <!-- jQuery -->
+  <script src="assets-tamplate/plugins/jquery/jquery.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -76,26 +79,44 @@ include 'config/app.php';
             <li class="nav-header">Daftar Menu</li>
 
             <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 2) : ?>
-            <li class="nav-item">
-              <a href="index" class="nav-link">
-                <i class="nav-icon fas fa-list"></i>
-                <p>
-                  Data Barang
-                </p>
-              </a>
-            </li>
+              <li class="nav-item">
+                <a href="index" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>
+                    Data Barang
+                  </p>
+                </a>
+              </li>
             <?php endif; ?>
 
             <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 3) : ?>
+              <li class="nav-item">
+                <a href="mahasiswa" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Data Mahasiswa
+                  </p>
+                </a>
+              </li>
+            <?php endif; ?>
+
             <li class="nav-item">
-              <a href="mahasiswa" class="nav-link">
+              <a href="pegawai.php" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
-                  Data Mahasiswa
+                  Data Pegawai (Realtime)
                 </p>
               </a>
             </li>
-            <?php endif; ?>
+
+            <li class="nav-item">
+              <a href="email.php" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>
+                  Kirim Email (PHPMailer)
+                </p>
+              </a>
+            </li>
 
             <li class="nav-item">
               <a href="akun" class="nav-link">
